@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Display - Design Gallery</title>
+    
+    <!-- 1. BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS (Embedded for single file usage) -->
+    <style>
+        /* --- GLOBAL STYLES --- */
+        .fas, .fab, .fa-solid, .fa-regular, .fa-brands {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+}
+
+/* ROOT VARIABLES */
+:root {
+    --primary-green: #2E4F2F;    /* Deep Forest Green */
+    --accent-green: #557C56;     /* Medium Sage */
+    --light-green: #F4F9F4;      /* Very Light Green Background */
+    --wood-brown: #8B5A2B;       /* Earthy Wood Tone */
+    --gold: #D4AF37;             /* Luxury Accent */
+    --white: #ffffff;
+    --dark-text: #111111;
+    --gray-text: #666666;
+    --base-font-size: 18px;
+}
+
+/* STRICT FONT ENFORCEMENT */
+* {
+    font-family: 'Calibri', 'Candara', 'Segoe', 'Segoe UI', Optima, Arial, sans-serif !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: var(--base-font-size);   /* 🔥 YAHI MISSING THA */
+}
+
+/* BODY */
+body {
+    background-color: #ffffff;
+    color: var(--dark-text);
+    overflow-x: hidden;
+    font-size: var(--base-font-size);   /* 🔥 APPLY HERE ALSO */
+    line-height: 1.5;
+}
+
+
+        a { text-decoration: none; }
+        ul { list-style: none; padding: 0; }
+
+        /* --- 1. TOP BAR --- */
+        .top-header {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .top-info span { margin-right: 20px; }
+        .top-info i { color: var(--gold); margin-right: 5px; }
+
+        /* --- 2. NAVBAR --- */
+        .navbar {
+            
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            height: 85px;
+        }
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-green);
+            text-transform: uppercase;
+        }
+        .navbar-brand span { color: var(--wood-brown); }
+        
+        .nav-link {
+            color: var(--dark-text) !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin: 0 12px;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--wood-brown) !important; }
+        
+        .btn-theme {
+            background-color: var(--wood-brown);
+            color: var(--white);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 2px solid var(--wood-brown);
+        }
+        .btn-theme:hover {
+            background-color: transparent;
+            color: var(--wood-brown);
+        }
+
+    .navbar-brand {
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* LOGO SIZE CONTROL */
+.navbar-brand img {
+    height: 190px;   /* 👈 yahan height bada ki */
+    width: auto;
+    max-height: none; /* navbar limit remove */
+}
+  
+span a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+span a:hover {
+    color: var(--gold);
+}
+
+
+
+        /* --- HERO SLIDER --- */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1s ease-in-out;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .slide.active { opacity: 1; }
+        .slide::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); /* Slightly darker for text visibility */
+        }
+        .hero-content {
+            position: relative; z-index: 2; text-align: center; color: white;
+            transform: translateY(30px); opacity: 0; transition: 0.8s ease;
+        }
+        .slide.active .hero-content { transform: translateY(0); opacity: 1; transition-delay: 0.3s; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; }
+        .hero-btn {
+            display: inline-block; margin-top: 20px;
+            padding: 12px 35px; border: 2px solid white; color: white;
+            text-decoration: none; font-weight: bold; text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .hero-btn:hover { background: white; color: var(--primary); }
+
+        /* --- DISPLAY GRID --- */
+        .product-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s; cursor: pointer; margin-bottom: 30px;
+            border: 1px solid #eee;
+        }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        
+        .card-img-box { height: 300px; /* Taller for Live Display */ overflow: hidden; position: relative; }
+        .card-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .card-img-box img { transform: scale(1.1); }
+        
+        .hover-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(46, 79, 47, 0.7); /* Green Tint for Display */
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: 0.3s;
+        }
+        .product-card:hover .hover-overlay { opacity: 1; }
+        
+        .view-btn {
+            background: white; color: var(--secondary); padding: 10px 25px;
+            border-radius: 30px; font-weight: bold; text-decoration: none;
+        }
+
+        .card-details { padding: 20px; text-align: center; }
+        .card-details h3 { font-size: 1.3rem; margin-bottom: 5px; color: var(--dark); }
+        .card-details p { color: var(--secondary); font-weight: 600; margin: 0; font-size: 0.9rem; }
+         /* ================= FOOTER ================= */
+
+.footer-logo {
+    display: inline-block;
+    max-height: 140px;
+    overflow: hidden;
+    margin-top: 0;
+    line-height: 0;          
+    vertical-align: top;     
+}
+
+.footer-logo img {
+    height: 100%;
+    width: auto;
+    max-height: 140px;
+    display: block;
+    object-fit: contain;
+}
+
+footer {
+    background: linear-gradient(180deg, #1a231b, #0f1511);
+    color: #e0e0e0;
+    padding: 90px 0 0;
+    font-size: 16px;
+}
+
+.footer-widget {
+    margin-bottom: 40px;
+}
+
+/* Headings */
+.footer-widget h4 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.footer-widget h4::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: var(--gold);
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+}
+
+/* Paragraph */
+.footer-widget p {
+    line-height: 1.8;
+    color: #cccccc;
+}
+
+/* Links */
+.footer-links li {
+    margin-bottom: 14px;
+}
+
+.footer-links a {
+    color: #cccccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    padding-left: 10px;
+}
+
+/* Contact List */
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    transition: 0.3s;
+}
+
+.contact-list li:hover {
+    transform: translateX(5px);
+}
+
+.contact-list i {
+    color: var(--gold);
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+/* Remove blue */
+footer a,
+footer a:visited {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+/* Social Icons */
+.footer-social a {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: var(--gold);
+    transform: translateY(-5px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    background: #0b0f0c;
+    padding: 25px 0;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 15px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: #fff;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+
+/* Contact */
+.contact-info {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    margin-top: 4px;
+}
+
+/* Bottom Bar */
+.copyright-area {
+    background: #110a07;
+    padding: 18px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* Back to Top */
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-gold);
+    color: #1a100b;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    display: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 999;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-top {
+        text-align: center;
+    }
+    .social-box {
+        margin-top: 20px;
+    }
+    .social-box a {
+        margin: 0 6px;
+    }
+}
+
+        /* --- MODAL --- */
+        .modal-overlay {
+            display: none; position: fixed; z-index: 2050; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .custom-modal-content {
+            background: white; width: 90%; max-width: 1000px;
+            border-radius: 10px; display: flex; overflow: hidden; position: relative;
+            max-height: 90vh;
+        }
+        .modal-left { width: 55%; background: #000; display: flex; align-items: center; justify-content: center; }
+        .modal-left img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-right { width: 45%; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; }
+        
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; font-size: 30px; 
+            cursor: pointer; color: #666; background: none; border: none;
+        }
+        .specs li { list-style: none; margin-bottom: 15px; color: #555; display: flex; align-items: center; }
+        .specs i { color: var(--primary); width: 30px; font-size: 1.1rem; }
+
+        .wa-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25D366; color: white; width: 100%; padding: 15px;
+            border-radius: 8px; text-decoration: none; font-weight: bold;
+            margin-top: 20px; transition: 0.3s; font-size: 1.1rem;
+        }
+        .wa-btn:hover { background: #1ebc57; color: white; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px;
+            background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 2100; text-decoration: none; transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2rem; }
+            .custom-modal-content { flex-direction: column; overflow-y: auto; }
+            .modal-left, .modal-right { width: 100%; }
+            .modal-left { height: 250px; }
+            .modal-right { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+  
+    <!-- 1. TOP HEADER -->
+    <div class="top-header">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <div class="top-info">
+               <span>
+             <i class="fa-solid fa-phone"></i>
+              <a href="tel:+919643550073">+91 9643550073</a>
+             </span>
+
+              <span class="d-none d-md-inline">
+            <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:design.galleryme@gmail.com">design.galleryme@gmail.com</a>
+            </span>
+
+            </div>
+            <div class="social-icons d-none d-sm-block">
+                <span>Follow Us: </span>
+                <a href="https://www.facebook.com/profile.php?id=61584343894797" class="text-white ms-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/designgallerystore.in/" class="text-white ms-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white ms-2"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+              <a class="navbar-brand" href="index.html">
+                <img src="assets/img/removebglogo.png" alt="Logo">
+                
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="fas fa-bars text-success"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+              <ul class="navbar-nav gap-4">
+               <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+               <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+               <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+               <li class="nav-item"><a class="nav-link" href="ourstore.html">Our Store</a></li>
+               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+            <a href="https://wa.me/919643550073" class="btn btn-theme d-none d-lg-block">Get Quote</a>
+        </div>
+    </nav>
+    <!-- 3. HERO SLIDER (Showcase Theme) -->
+    <section class="hero-section" id="heroSlider">
+        <div class="slide active" style="background-image: url('assets/img/designloungue.jpg');">
+            <div class="hero-content">
+                <h1>Live Design Showroom</h1>
+                <p>Experience our finished installations and ready-made art pieces.</p>
+                <a href="#gallery" class="hero-btn">View Gallery</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('https://i.pinimg.com/736x/b7/29/5c/b7295cdb24f577f7117acbfd2cea94a4.jpg');">
+            <div class="hero-content">
+                <h1>Intricate Jali Partitions</h1>
+                <p>Walls filled with over 500+ ready-made patterns.</p>
+                <a href="#gallery" class="hero-btn">Browse Patterns</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('assets/img/3d wall.jpg');">
+            <div class="hero-content">
+                <h1>3D Wall Art & Decor</h1>
+                <p>Transform your space with our exclusive wall sculptures.</p>
+                <a href="#gallery" class="hero-btn">See Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALLERY SECTION -->
+    <main class="container py-5" id="gallery">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Ready-Made Collection</h2>
+            <p class="text-muted">Explore our live display available at the store</p>
+            <div style="width: 80px; height: 4px; background: var(--primary); margin: 10px auto;"></div>
+        </div>
+        
+        <!-- Dynamic Grid -->
+        <div class="row" id="displayGrid"></div>
+    </main>
+
+    <!-- 5. MODAL POPUP -->
+    <div id="displayModal" class="modal-overlay">
+        <div class="custom-modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-left">
+                <img id="mImage" src="" alt="">
+            </div>
+            <div class="modal-right">
+                <span class="badge bg-secondary mb-2" id="mCategory">Category</span>
+                <h2 id="mTitle" class="fw-bold mb-3">Title</h2>
+                <p class="text-muted mb-4" id="mDesc" style="line-height: 1.6;">Description goes here.</p>
+                
+                <h5 class="fw-bold mb-3">Product Specifications:</h5>
+                <ul class="specs ps-0">
+                    <li><i class="fas fa-cube"></i> <span id="mMaterial">Material: MDF / WPC</span></li>
+                    <li><i class="fas fa-ruler-combined"></i> <span id="mDim">Dimensions: Custom</span></li>
+                    <li><i class="fas fa-paint-roller"></i> <span id="mFinish">Finish: Duco Paint</span></li>
+                    <li><i class="fas fa-clock"></i> <span id="mTime">Production Time: 3-5 Days</span></li>
+                </ul>
+
+                <a href="#" id="waLink" target="_blank" class="wa-btn">
+                    <i class="fab fa-whatsapp"></i> Enquire Price on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 10. FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <a href="index.html" class="footer-logo">
+                 <img src="assets/img/removebglogo.png" alt="Logo">
+                 </a>
+                    <p>We are the CNC Wood Cutting & Laser Engraving Experts in Gurgaon. Dedicated to providing high-quality CNC Jali, Acrylic, and ACP fabrication services.</p>
+                    <div class="mt-4">
+                        <a href="https://www.facebook.com/profile.php?id=61584343894797" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://www.instagram.com/designgallerystore.in/" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://api.whatsapp.com/send/?phone=919212274598&text&type=phone_number&app_absent=0" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 mb-5">
+                    <div class="footer-widget">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="ourstore.html">Our Store</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 mb-5">
+                    <div class="footer-widget">
+                        <h4>Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="services.html">CNC Wood Carving</a></li>
+                            <li><a href="services.html">ACP Fabrication</a></li>
+                            <li><a href="services.html">MDF Jali Cutting</a></li>
+                            <li><a href="services.html">Wallpaper Design</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-5">
+                    <div class="footer-widget">
+                        <h4>Contact Us</h4>
+                                           <ul class="contact-list">
+    
+                         <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Gandhi+Nagar+Gurugram" target="_blank">
+                      Gandhi Nagar, Gurugram
+                      </a>
+                       </li>
+
+                     <li>
+                   <i class="fas fa-phone-alt"></i>
+                <div>
+                   <a href="tel:+919212274598">+91 9212274598</a><br>
+                   <a href="tel:+919643550073">+91 9643550073</a>
+               </div>
+                   </li>
+
+
+             <li>
+                 <i class="fas fa-envelope"></i>
+                 <a href="mailto:design.galleryme@gmail.com">
+                 design.galleryme@gmail.com
+              </a>
+          </li>
+
+             </ul>
+        
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+              <p class="m-0">
+            © 2026 Design Gallery Store. All Rights Reserved. | Design by 
+            <a href="https://www.digitalkinfotech.com" target="_blank">DigiTalk Infotech</a>
+           </p>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Whatsapp Float -->
+    <a href="https://wa.me/919212274598" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CUSTOM LOGIC -->
+    <script>
+          // 1. HERO SLIDER LOGIC (if you have slides elsewhere)
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  function nextSlide() {
+      slides[currentSlide]?.classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide]?.classList.add('active');
+  }
+  setInterval(nextSlide, 5000);
+
+  // 2. PRODUCT DATA
+  const products = [
+      {
+          id: 1,
+          name: "Aluminium (ACP Sheet)",
+          img: "assets/img/material 1.jpg",
+          desc: "High-quality Aluminium Composite Panels used for CNC cutting, exterior cladding, signage, and fabrication work.",
+          type: "Metal / ACP",
+          size: "8ft x 4ft",
+          finish: "Matte / Gloss / Brushed"
+      },
+      {
+          id: 2,
+          name: "Acrylic Sheet",
+          img: "assets/img/material2.jpg",
+          desc: "Premium acrylic sheets ideal for laser cutting, engraving, signage, and decorative panels.",
+          type: "Acrylic / PMMA",
+          size: "8ft x 4ft",
+          finish: "Gloss / Matte / Transparent"
+      },
+      {
+          id: 3,
+          name: "MDF Board",
+          img: "assets/img/material3.jpg",
+          desc: "Smooth MDF boards perfect for CNC cutting, jali panels, wall décor, and furniture applications.",
+          type: "Engineered Wood",
+          size: "8ft x 4ft (12mm–18mm)",
+          finish: "Raw / Paint Ready"
+      },
+      {
+          id: 4,
+          name: "WPC Foam Board",
+          img: "assets/img/material4.jpg",
+          desc: "Waterproof and termite-proof WPC foam boards used for CNC routing, partitions, and exterior use.",
+          type: "WPC / PVC Foam",
+          size: "8ft x 4ft",
+          finish: "Smooth / Textured"
+      },
+      {
+          id: 5,
+          name: "Solid Wood",
+          img: "assets/img/material5.jpg",
+          desc: "Natural solid wood material for premium CNC wood carving, temple work, doors, and custom furniture.",
+          type: "Natural Wood",
+          size: "Custom Sizes",
+          finish: "Natural / Polished / Carved"
+      },
+      {
+          id: 6,
+          name: "CNC Laser Engraving Material",
+          img: "assets/img/material6.jpg",
+          desc: "Precision laser engraving on wood, MDF, acrylic, and metal for logos, patterns, and branding work.",
+          type: "Laser Engraving",
+          size: "Custom Sizes",
+          finish: "Engraved / Cut Finish"
+      }
+  ];
+
+  // 3. RENDER GRID
+  const grid = document.getElementById('displayGrid');
+  grid.innerHTML = products.map(item => `
+      <div class="col-md-6 col-lg-4">
+          <div class="product-card" onclick="openModal(${item.id})" style="border:1px solid #ddd; padding:10px; margin-bottom:20px; cursor:pointer; border-radius:10px;">
+              <div class="card-img-box" style="position:relative;">
+                  <img src="${item.img}" alt="${item.name}" style="width:100%; border-radius:10px;">
+                  <div class="hover-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; justify-content:center; align-items:center; opacity:0; background:rgba(0,0,0,0.5); color:#fff; border-radius:10px; transition:0.3s;">
+                      <span class="view-btn"><i class="fas fa-eye"></i> View Detail</span>
+                  </div>
+              </div>
+              <div class="card-details" style="padding:10px 0;">
+                  <span class="badge bg-light text-dark mb-2">${item.type}</span>
+                  <h3>${item.name}</h3>
+                  <p>Size: ${item.size}</p>
+              </div>
+          </div>
+      </div>
+  `).join('');
+
+  // Hover effect for overlay
+  document.querySelectorAll('.card-img-box').forEach(box => {
+      box.addEventListener('mouseover', () => box.querySelector('.hover-overlay').style.opacity = 1);
+      box.addEventListener('mouseout', () => box.querySelector('.hover-overlay').style.opacity = 0);
+  });
+
+  // 4. MODAL LOGIC
+  const modal = document.getElementById('displayModal');
+  const mImage = document.getElementById('mImage');
+  const mCategory = document.getElementById('mCategory');
+  const mTitle = document.getElementById('mTitle');
+  const mDesc = document.getElementById('mDesc');
+  const mMaterial = document.getElementById('mMaterial');
+  const mDim = document.getElementById('mDim');
+  const mFinish = document.getElementById('mFinish');
+  const mTime = document.getElementById('mTime');
+  const waLink = document.getElementById('waLink');
+  const YOUR_WHATSAPP_NUMBER = "9643550073";
+
+  function openModal(id) {
+      const item = products.find(p => p.id === id);
+      if(!item) return;
+
+      mImage.src = item.img;
+      mCategory.innerText = item.type;
+      mTitle.innerText = item.name;
+      mDesc.innerText = item.desc;
+      mMaterial.innerHTML = `Material: <strong>${item.type}</strong>`;
+      mDim.innerHTML = `Dimensions: <strong>${item.size}</strong>`;
+      mFinish.innerHTML = `Finish: <strong>${item.finish}</strong>`;
+      mTime.innerHTML = `Production: <strong>Varies</strong>`; // optional
+
+      const text = `Hello Design Gallery, I am interested in the product: *${item.name}* (${item.type}). Please share more details.`;
+      waLink.href = `https://wa.me/${9643550073}?text=${encodeURIComponent(text)}`;
+
+      modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+      modal.style.display = 'none';
+  }
+
+  window.onclick = function(e) {
+      if (e.target == modal) closeModal();
+  }
+    </script>
+</body>
+</html>
