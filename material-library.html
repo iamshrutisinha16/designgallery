@@ -450,6 +450,124 @@ footer a:visited {
             .modal-left { height: 250px; }
             .modal-right { padding: 20px; }
         }
+              /* ===============================
+   RESPONSIVE – TABLET & BELOW
+================================ */
+@media (max-width: 992px){
+
+    /* ---------- TOP HEADER ---------- */
+    .top-header .container{
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .top-info span{
+        display: inline-block;
+        margin: 4px 10px;
+        font-size: 14px;
+    }
+
+    .social-icons{
+        display: block !important;
+        margin-top: 5px;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar{
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .navbar-brand img{
+        height: 120px;
+        max-height: 120px;
+    }
+
+    .navbar-collapse{
+        background: #ffffff;
+        margin-top: 12px;
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .navbar-nav{
+        gap: 0 !important;
+        text-align: center;
+    }
+
+    .nav-link{
+        font-size: 15px;
+        margin: 8px 0;
+    }
+}
+/* ===============================
+   RESPONSIVE – MOBILE
+================================ */
+@media (max-width: 768px){
+
+    .top-header{
+        padding: 6px 0;              /* height kam */
+    }
+
+    .top-header .container{
+        gap: 4px;                    /* vertical gap kam */
+    }
+
+    .top-info span{
+        font-size: 13px;
+        line-height: 1.2;
+        margin: 2px 0;
+    }
+    .social-icons{
+        display: flex !important;
+        justify-content: center;
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar{
+        padding: 8px 0;
+    }
+
+    .navbar-brand img{
+        height: 90px;
+        max-height: 90px;
+    }
+
+    .navbar-toggler{
+        padding: 6px 10px;
+        font-size: 1.2rem;
+    }
+
+}
+
+/* ===============================
+   RESPONSIVE – SMALL MOBILE
+================================ */
+@media (max-width: 480px){
+
+    .navbar-brand img{
+        height: 75px;
+        max-height: 75px;
+    }
+
+      .top-header{
+        padding: 4px 0;              /* aur slim */
+    }
+
+    .top-info span{
+        font-size: 12px;
+    }
+ 
+
+    .social-icons{
+        font-size: 13px;
+    }
+}
+ 
     </style>
 </head>
 <body>
