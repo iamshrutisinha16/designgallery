@@ -12,18 +12,19 @@ if (typeof AOS !== "undefined") {
 /***********************
  HERO SLIDER – HOME
 ************************/
-const slides = document.querySelectorAll('.hero-bg');
-if (slides.length > 0) {
-    let currentSlide = 0;
-
-    function changeSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }
-
-    setInterval(changeSlide, 6000);
-}
+document.addEventListener("DOMContentLoaded", function() {
+        let current = 0;
+        const slides = document.querySelectorAll(".hero-bg");
+        
+        function nextSlide() {
+            slides[current].classList.remove("active");
+            current = (current + 1) % slides.length;
+            slides[current].classList.add("active");
+        }
+        setInterval(nextSlide, 5000);
+        
+        AOS.init({ duration: 1000, once: true });
+    });
 
 /***********************
  NAVBAR SHADOW

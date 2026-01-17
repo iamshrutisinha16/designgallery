@@ -13,123 +13,95 @@
     
     <!-- Custom CSS (Embedded for single file usage) -->
     <style>
-        /* --- GLOBAL STYLES --- */
-        .fas, .fab, .fa-solid, .fa-regular, .fa-brands {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* ROOT VARIABLES */
 :root {
-    --primary-green: #2E4F2F;    /* Deep Forest Green */
-    --accent-green: #557C56;     /* Medium Sage */
-    --light-green: #F4F9F4;      /* Very Light Green Background */
-    --wood-brown: #8B5A2B;       /* Earthy Wood Tone */
-    --gold: #D4AF37;             /* Luxury Accent */
+    --primary-green: #2E4F2F;    
+    --gold: #D4AF37;          
+    --wood: #8B5A2B;       
     --white: #ffffff;
-    --dark-text: #111111;
-    --gray-text: #666666;
-    --base-font-size: 18px;
+    --transition: all 0.3s ease;
 }
 
-/* STRICT FONT ENFORCEMENT */
-* {
-    font-family: 'Calibri', 'Candara', 'Segoe', 'Segoe UI', Optima, Arial, sans-serif !important;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: var(--base-font-size);   /* 🔥 YAHI MISSING THA */
-}
-
-/* BODY */
 body {
-    background-color: #ffffff;
-    color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
     overflow-x: hidden;
-    font-size: var(--base-font-size);   /* 🔥 APPLY HERE ALSO */
-    line-height: 1.5;
 }
 
+/* --- TOP HEADER --- */
+.top-header {
+    background: var(--primary-green);
+    color: white;
+    padding: 6px 0;
+    font-size: 16px;
+}
+.top-header a { color: white; text-decoration: none; margin-right: 15px; }
+.top-header i { color: var(--gold); margin-right: 5px; }
 
-        a { text-decoration: none; }
-        ul { list-style: none; padding: 0; }
+.navbar {
+    background: var(--white);
+    padding: 0px 0; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 80px;
+}
 
-        /* --- 1. TOP BAR --- */
-        .top-header {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 10px 0;
-            font-size: 15px;
-            font-weight: bold;
-        }
-        .top-info span { margin-right: 20px; }
-        .top-info i { color: var(--gold); margin-right: 5px; }
-
-        /* --- 2. NAVBAR --- */
-        .navbar {
-            
-            background: var(--white);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 15px 0;
-            transition: all 0.3s ease;
-            height: 85px;
-        }
-        .navbar-brand {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary-green);
-            text-transform: uppercase;
-        }
-        .navbar-brand span { color: var(--wood-brown); }
-        
-        .nav-link {
-            color: var(--dark-text) !important;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 14px;
-            margin: 0 12px;
-            position: relative;
-            transition: 0.3s;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--wood-brown) !important; }
-        
-        .btn-theme {
-            background-color: var(--wood-brown);
-            color: var(--white);
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: 2px solid var(--wood-brown);
-        }
-        .btn-theme:hover {
-            background-color: transparent;
-            color: var(--wood-brown);
-        }
-
-    .navbar-brand {
+.navbar-brand {
     padding: 0;
+    margin: 0;
+}
+
+.navbar-brand img {
+    height: 180px;
+    width: auto;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));
+    transition: var(--transition);
+    position: relative;
+    z-index: 1001;
+}
+
+.navbar-nav{
     display: flex;
     align-items: center;
+    justify-content: center;  
+    gap: 24px;               
 }
 
-/* LOGO SIZE CONTROL */
-.navbar-brand img {
-    height: 190px;   /* 👈 yahan height bada ki */
-    width: auto;
-    max-height: none; /* navbar limit remove */
-}
-  
-span a {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s ease;
+.nav-link {
+    color: var(--primary-green) !important;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 !important;
+    padding: 28px 0 !important; 
 }
 
-span a:hover {
-    color: var(--gold);
+.navbar-nav .btn-theme{
+    margin-left: auto;
 }
 
+
+.btn-theme {
+    background: var(--primary-green);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-theme:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* --- TOGGLER (Mobile Icon) --- */
+.navbar-toggler {
+    border: none;
+    color: var(--primary-green) !important;
+}
+.navbar-toggler:focus { box-shadow: none; }
 
 
         /* --- HERO SLIDER --- */
@@ -450,177 +422,52 @@ footer a:visited {
             .modal-left { height: 250px; }
             .modal-right { padding: 20px; }
         }
-              /* ===============================
-   RESPONSIVE – TABLET & BELOW
-================================ */
-@media (max-width: 992px){
-
-    /* ---------- TOP HEADER ---------- */
-    .top-header .container{
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-    }
-
-    .top-info span{
-        display: inline-block;
-        margin: 4px 10px;
-        font-size: 14px;
-    }
-
-    .social-icons{
-        display: block !important;
-        margin-top: 5px;
-    }
-
-    /* ---------- NAVBAR ---------- */
-    .navbar{
-        height: auto;
-        padding: 10px 0;
-    }
-
-    .navbar-brand img{
-        height: 120px;
-        max-height: 120px;
-    }
-
-    .navbar-collapse{
-        background: #ffffff;
-        margin-top: 12px;
-        padding: 18px;
-        border-radius: 14px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    }
-
-    .navbar-nav{
-        gap: 0 !important;
-        text-align: center;
-    }
-
-    .nav-link{
-        font-size: 15px;
-        margin: 8px 0;
-    }
-}
-/* ===============================
-   RESPONSIVE – MOBILE
-================================ */
-@media (max-width: 768px){
-
-    .top-header{
-        padding: 6px 0;              /* height kam */
-    }
-
-    .top-header .container{
-        gap: 4px;                    /* vertical gap kam */
-    }
-
-    .top-info span{
-        font-size: 13px;
-        line-height: 1.2;
-        margin: 2px 0;
-    }
-    .social-icons{
-        display: flex !important;
-        justify-content: center;
-        gap: 12px;
-        font-size: 14px;
-    }
-
-    /* ---------- NAVBAR ---------- */
-    .navbar{
-        padding: 8px 0;
-    }
-
-    .navbar-brand img{
-        height: 90px;
-        max-height: 90px;
-    }
-
-    .navbar-toggler{
-        padding: 6px 10px;
-        font-size: 1.2rem;
-    }
-
-}
-
-/* ===============================
-   RESPONSIVE – SMALL MOBILE
-================================ */
-@media (max-width: 480px){
-
-    .navbar-brand img{
-        height: 75px;
-        max-height: 75px;
-    }
-
-      .top-header{
-        padding: 4px 0;              /* aur slim */
-    }
-
-    .top-info span{
-        font-size: 12px;
-    }
- 
-
-    .social-icons{
-        font-size: 13px;
-    }
-}
- 
+     
     </style>
 </head>
 <body>
-  
-    <!-- 1. TOP HEADER -->
-    <div class="top-header">
-        <div class="container d-flex justify-content-between align-items-center flex-wrap">
-            <div class="top-info">
-               <span>
-             <i class="fa-solid fa-phone"></i>
-              <a href="tel:+919643550073">+91 9643550073</a>
-             </span>
-
-              <span class="d-none d-md-inline">
-            <i class="fa-solid fa-envelope"></i>
-              <a href="mailto:design.galleryme@gmail.com">design.galleryme@gmail.com</a>
-            </span>
-
-            </div>
-            <div class="social-icons d-none d-sm-block">
-                <span>Follow Us: </span>
-                <a href="https://www.facebook.com/profile.php?id=61584343894797" class="text-white ms-2"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/designgallerystore.in/" class="text-white ms-2"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white ms-2"><i class="fab fa-youtube"></i></a>
-            </div>
+  <!-- TOP HEADER -->
+<div class="top-header">
+    <div class="container d-flex justify-content-between">
+        <div>
+            <a href="tel:+919643550073"><i class="fa-solid fa-phone"></i> +91 9643550073</a>
+            <span class="d-none d-md-inline text-white-50">|</span>
+            <a href="mailto:design.galleryme@gmail.com" class="d-none d-md-inline ms-2"><i class="fa-solid fa-envelope"></i> design.galleryme@gmail.com</a>
+        </div>
+        <div class="d-none d-sm-block">
+            <a href="https://www.facebook.com/profile.php?id=61584343894797"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/designgallerystore.in/"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
+</div>
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/img/removebglogo.png" alt="Logo">
+        </a>
 
-    <!-- 2. NAVBAR -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-              <a class="navbar-brand" href="index.html">
-                <img src="assets/img/removebglogo.png" alt="Logo">
-                
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="fas fa-bars text-success"></span>
-            </button>
+        <!-- TOGGLER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
-              <ul class="navbar-nav gap-4">
-               <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-               <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-               <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-               <li class="nav-item"><a class="nav-link" href="ourstore.html">Our Store</a></li>
-               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <!-- MENU -->
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="ourstore.html">Our Store</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
-          </div>
 
-            <a href="https://wa.me/919643550073" class="btn btn-theme d-none d-lg-block">Get Quote</a>
+            <a href="https://wa.me/919643550073" class="btn btn-theme d-none d-lg-block">
+                Get Quote
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
     <!-- 3. HERO SLIDER (Showcase Theme) -->
     <section class="hero-section" id="heroSlider">
         <div class="slide active" style="background-image: url('assets/img/designloungue.jpg');">
@@ -684,13 +531,11 @@ footer a:visited {
             </div>
         </div>
     </div>
-    
-    <!-- 10. FOOTER -->
-    <footer id="contact">
+      <footer id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-5">
-                    <a href="index.html" class="footer-logo">
+                <a href="index.html" class="footer-logo">
                  <img src="assets/img/removebglogo.png" alt="Logo">
                  </a>
                     <p>We are the CNC Wood Cutting & Laser Engraving Experts in Gurgaon. Dedicated to providing high-quality CNC Jali, Acrylic, and ACP fabrication services.</p>
@@ -716,51 +561,50 @@ footer a:visited {
                     <div class="footer-widget">
                         <h4>Services</h4>
                         <ul class="footer-links">
-                            <li><a href="services.html">CNC Wood Carving</a></li>
-                            <li><a href="services.html">ACP Fabrication</a></li>
-                            <li><a href="services.html">MDF Jali Cutting</a></li>
+                            <li><a href="services.html">Arcylic Laser</a></li>
                             <li><a href="services.html">Wallpaper Design</a></li>
+                            <li><a href="services.html">3D Relief Art</a></li>
+                            <li><a href="services.html">CNC Jali Cutting</a></li>
+                             <li><a href="services.html">Wood Carving</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 mb-5">
                     <div class="footer-widget">
                         <h4>Contact Us</h4>
-                                           <ul class="contact-list">
+                       <ul class="contact-list">
     
-                         <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Gandhi+Nagar+Gurugram" target="_blank">
-                      Gandhi Nagar, Gurugram
-                      </a>
-                       </li>
-
-                     <li>
+                  <li>
+                       <i class="fas fa-map-marker-alt"></i>
+               <a href="https://www.google.com/maps/search/?api=1&query=Gandhi+Nagar+Gurugram" target="_blank">
+                    Gandhi Nagar, Gurugram
+                </a>
+            </li>
+           <li>
                    <i class="fas fa-phone-alt"></i>
                 <div>
                    <a href="tel:+919212274598">+91 9212274598</a><br>
                    <a href="tel:+919643550073">+91 9643550073</a>
+                   <a href="tel:+919643555525">+91 9643555525</a>
                </div>
                    </li>
 
+        <li>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:design.galleryme@gmail.com">
+            design.galleryme@gmail.com
+        </a>
+              </li>
 
-             <li>
-                 <i class="fas fa-envelope"></i>
-                 <a href="mailto:design.galleryme@gmail.com">
-                 design.galleryme@gmail.com
-              </a>
-          </li>
-
-             </ul>
-        
+               </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-              <p class="m-0">
-            © 2026 Design Gallery Store. All Rights Reserved. | Design by 
-            <a href="https://www.digitalkinfotech.com" target="_blank">DigiTalk Infotech</a>
-           </p>
+                <p class="m-0">
+             © 2026 Design Gallery Store. All Rights Reserved. | Design by 
+             <a href="https://www.digitalkinfotech.com" target="_blank">DigiTalk Infotech</a>
+               </p>
 
             </div>
         </div>
