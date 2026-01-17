@@ -194,9 +194,70 @@ body {
 
 @media (max-width: 576px) {
 
-    .navbar-brand img {
-        height: 48px;            
+    @media (max-width: 991px) {
+
+    .navbar {
+        height: auto;            
+        padding: 10px 15px;
     }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-brand img {
+        height: 110px;              
+        width: auto;
+        max-width: 100%;
+    }
+
+    .navbar-toggler {
+        padding: 4px 6px;
+        font-size: 18px;
+    }
+
+    .nav-link {
+        padding: 10px 0 !important;
+        text-align: center;
+    }
+
+    .navbar-collapse {
+        background: #fff;
+        margin-top: 10px;
+        border-radius: 8px;
+        padding: 10px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+
+   .navbar-brand img {
+        height: 75px;      /* ✅ better size */
+        width: auto;
+    }
+    
+    .hero-section {
+        height: auto;
+        padding: 60px 15px;
+        text-align: center;
+    }
+
+     .navbar-toggler{
+        padding: 6px 10px;
+        font-size: 1.2rem;
+    }
+
+    .hero-content p {
+        margin: 0 auto 20px;
+        font-size: 15px;
+    }
+}
+
 
     .hero-section {
         height: auto;
@@ -870,27 +931,23 @@ body {
     }
 }
 
-
-
  /* ================= FOOTER ================= */
 .footer-logo {
     display: inline-block;
-    max-height: 200px;  /* pehle 160px tha */
+    max-height: 200px;  
     overflow: hidden;
     margin-top: 0;
-    line-height: 0;          /* Extra space remove karne ke liye */
-    vertical-align: top;     /* Logo ko upar align karne ke liye */
+    line-height: 0;         
+    vertical-align: top;     
 }
 
 .footer-logo img {
     height: 100%;
     width: auto;
-    max-height: 180px;  /* pehle 140px tha */
+    max-height: 180px;  
     display: block;
     object-fit: contain;
 }
-
-
 
 footer {
     background: linear-gradient(180deg, #1a231b, #0f1511);
@@ -898,14 +955,13 @@ footer {
     padding: 70px 0 0;
     font-size: 16px;
    
-    padding-bottom: 20px; /* neeche thoda space rahe */
+    padding-bottom: 20px; 
 }
 
 .footer-widget {
     margin-bottom: 40px;
 }
 
-/* Headings */
 .footer-widget h4 {
     color: #ffffff;
     font-size: 22px;
@@ -968,14 +1024,12 @@ footer {
     margin-bottom: 0;
 }
 
-/* Remove blue */
 footer a,
 footer a:visited {
     color: #cccccc;
     text-decoration: none;
 }
 
-/* Social Icons */
 .footer-social a {
     display: inline-flex;
     width: 42px;
@@ -994,7 +1048,6 @@ footer a:visited {
     transform: translateY(-5px);
 }
 
-/* Footer Bottom */
 .footer-bottom {
     background: #0b0f0c;
     padding: 25px 0;
@@ -1004,7 +1057,6 @@ footer a:visited {
     border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-/* ================= WHATSAPP FLOAT ================= */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
@@ -1028,8 +1080,6 @@ footer a:visited {
     color: #fff;
 }
 
-
-/* Contact */
 .contact-info {
     list-style: none;
     padding: 0;
@@ -1073,18 +1123,95 @@ footer a:visited {
     z-index: 999;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .footer-top {
+/* =========================
+   FOOTER RESPONSIVE FIX
+========================= */
+
+/* Mobile-first adjustments for small screens */
+@media (max-width: 992px) {
+    footer {
+        padding: 50px 20px 20px;
+    }
+
+    /* Footer logo bigger on mobile/tablet */
+    .footer-logo img {
+        max-height: 200px;
+        width: auto;
+        margin: 0 auto 20px;
+        display: block;
+    }
+
+    /* Footer widgets stack vertically */
+    .footer-widget {
         text-align: center;
+        margin-bottom: 30px;
     }
-    .social-box {
-        margin-top: 20px;
+
+    .footer-widget h4 {
+        font-size: 20px;
     }
-    .social-box a {
+
+    .footer-widget p,
+    .footer-links li a,
+    .contact-list a {
+        font-size: 14px;
+    }
+
+    /* Social icons centered */
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .footer-social a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
         margin: 0 6px;
     }
+
+    /* Contact info alignment for mobile */
+    .contact-info li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-info i {
+        margin-bottom: 6px;
+    }
+
+    /* Bottom copyright */
+    .footer-bottom,
+    .copyright-area {
+        text-align: center;
+        font-size: 13px;
+    }
 }
+
+@media (max-width: 576px) {
+    .footer-logo img {
+        max-height: 220px; 
+    }
+
+    .footer-widget h4 {
+        font-size: 18px;
+    }
+
+    .footer-widget p,
+    .footer-links li a,
+    .contact-list a {
+        font-size: 13px;
+    }
+
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
 
 /* 4. Intro Section (Dark) */
 .intro-section { background: #2c1b12; color: #fff; }
@@ -1174,7 +1301,17 @@ footer a:visited {
     animation: fadeUp 1s ease forwards;
 }
 
-/* ===== Contact Section Headings ===== */
+p a,
+p .divider,
+p .active {
+    color: #ffffff;          
+    text-decoration: none;    
+    font-weight: 500;
+}
+
+p a:hover {
+    color: #d4af37;           
+}
 
 .contact-sub-heading {
     display: inline-block;
@@ -1361,20 +1498,124 @@ footer a:visited {
 }
 
 /* =========================
-   6. RESPONSIVE
+   6. RESPONSIVE - MOBILE FIX
 ========================= */
+
+/* Medium devices (tablet) */
 @media (max-width: 992px) {
     .contact-banner {
         min-height: 55vh;
-        margin-top: 70px;
-    }
-
-    .contact-info-wrapper {
-        margin-top: 40px;
+        padding: 0 20px;
     }
 
     .contact-banner h1 {
         font-size: 2.3rem;
+    }
+
+    .contact-banner p {
+        font-size: 1rem;
+    }
+
+    .contact-form-wrapper,
+    .contact-info-wrapper {
+        padding: 35px 20px;
+    }
+
+    .c-info-card .icon-box {
+        width: 48px;
+        height: 48px;
+        font-size: 1.15rem;
+    }
+
+    .c-info-card .text-box h4 {
+        font-size: 1.1rem;
+    }
+
+    .c-info-card .text-box p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Small devices (mobile) */
+@media (max-width: 768px) {
+    .contact-banner {
+        min-height: 45vh;
+    }
+
+    .contact-banner h1 {
+        font-size: 2rem;
+    }
+
+    .contact-banner p {
+        font-size: 0.9rem;
+    }
+
+    .contact-form-wrapper,
+    .contact-info-wrapper {
+        padding: 25px 15px;
+    }
+
+    /* Contact Info Cards: stack vertically */
+    .c-info-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 20px;
+    }
+
+    .c-info-card .icon-box {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .c-info-card .text-box h4 {
+        font-size: 1rem;
+    }
+
+    .c-info-card .text-box p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Extra small devices (very small phones) */
+@media (max-width: 576px) {
+    .contact-banner {
+        min-height: 35vh;
+    }
+
+    .contact-banner h1 {
+        font-size: 1.7rem;
+    }
+
+    .contact-banner p {
+        font-size: 0.85rem;
+    }
+
+    .contact-form-wrapper,
+    .contact-info-wrapper {
+        padding: 20px 10px;
+    }
+
+    .c-info-card .icon-box {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .c-info-card .text-box h4 {
+        font-size: 0.95rem;
+    }
+
+    .c-info-card .text-box p {
+        font-size: 0.8rem;
+    }
+
+    /* Reduce button size */
+    .contact-form-wrapper button {
+        padding: 12px 30px;
+        font-size: 0.9rem;
     }
 }
 
